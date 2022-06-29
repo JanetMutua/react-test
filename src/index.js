@@ -33,33 +33,51 @@ import './index.css'
 // Nested components, React Tools
 
 
+// initializing variables
+const books = [
+  {
+    img:'https://images-na.ssl-images-amazon.com/images/I/41rzRPDRxJL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg',
+    title:'Where the Crawdads Sing',
+    author:'Delia Owens',
+
+  },
+  {
+    img:'https://m.media-amazon.com/images/I/51+YL7KXjtL._AC_UL320_.jpg',
+    title:'The Ultimate Tea Guide',
+    author:'Kathleen Rao',
+  },
+  {
+    img:'https://images-na.ssl-images-amazon.com/images/I/41vlc4ugVLL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg',
+    title:'Well Always Have Summer ',
+    author:'Jenny Han',
+  }
+];
+
+const names = ['joy', 'alan', 'carey']
+const newName = names.map((name) => {
+  console.log(name);
+});
 
 function BookList(){
   return (
    <section className="booklist">
-    <Book/>
-    <Book/>
-    <Book/>
+    {names}
    </section>    
   );
-}
+} 
 
-const Book = () =>{
+const Book = (props) =>{ 
+  // object destrucutring
+  const {img, title, author} = props;
+  console.log(props);
   return(
     <article className="book">
-      <Image> </Image>
-      <Title/>
-      <Author/>
+      <img src= {img} alt="" />
+      <h2>{title}</h2>
+      <h4>{author}</h4>
     </article>
   )
-}
-
-const Image = () => (
-<img src="https://m.media-amazon.com/images/I/51+YL7KXjtL._AC_UL320_.jpg" alt="" />
-);
-
-const Title =() => <h2>The Ultimate Tea Guide: A Detailed List of 60+ Tea Varieties, including Health Benefits & Steeping</h2>
-// inline CSS
-const Author = () => <h4 style={{color:'#617d98',fontSize: '0.75rem', marginTop: '0.25rem' }}>Kathleen Rao</h4>
+} 
 
 ReactDom.render(<BookList/>, document.getElementById('root'));
+ 
