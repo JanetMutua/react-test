@@ -1,7 +1,14 @@
 import React from "react";
 import ReactDom from 'react-dom';
-// CSS
+//-------------------------------CSS-------------------------------------------
 import './index.css'
+
+//-----------------------JS imports------------------------------------------
+// named import
+import {books} from './books'
+// default import
+import Book from './Book'
+
 
 // arrow function
 // for reference---------------------------------------------
@@ -33,51 +40,27 @@ import './index.css'
 // Nested components, React Tools
 
 
-// initializing variables
-const books = [
-  {
-    img:'https://images-na.ssl-images-amazon.com/images/I/41rzRPDRxJL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg',
-    title:'Where the Crawdads Sing',
-    author:'Delia Owens',
+// initializing variables into an array.
 
-  },
-  {
-    img:'https://m.media-amazon.com/images/I/51+YL7KXjtL._AC_UL320_.jpg',
-    title:'The Ultimate Tea Guide',
-    author:'Kathleen Rao',
-  },
-  {
-    img:'https://images-na.ssl-images-amazon.com/images/I/41vlc4ugVLL._SY291_BO1,204,203,200_QL40_FMwebp_.jpg',
-    title:'Well Always Have Summer ',
-    author:'Jenny Han',
-  }
-];
 
-const names = ['joy', 'alan', 'carey']
-const newName = names.map((name) => {
-  console.log(name);
-});
+
+//-------------------------------------stateless function----------------------------------------------------:
 
 function BookList(){
   return (
    <section className="booklist">
-    {names}
+    {books.map((book)=>{
+      return (
+        // using the smooth operator
+      <Book key={book.id} {...book}></Book>
+      
+      );
+
+    })}
    </section>    
-  );
+  ); 
 } 
 
-const Book = (props) =>{ 
-  // object destrucutring
-  const {img, title, author} = props;
-  console.log(props);
-  return(
-    <article className="book">
-      <img src= {img} alt="" />
-      <h2>{title}</h2>
-      <h4>{author}</h4>
-    </article>
-  )
-} 
 
 ReactDom.render(<BookList/>, document.getElementById('root'));
  
